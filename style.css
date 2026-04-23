@@ -1,5 +1,6 @@
 /* RTI DASHBOARD - OFFICIAL STYLESHEET
     Standard: Modular, Clean, and Scalable
+    STATUS: FIX NAVIGATION COLOR BUG
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap');
@@ -37,36 +38,41 @@ body {
     transition: all 1s ease; 
 }
 
-/* Cursor & Line Animation */
 .animate-cursor { animation: blink 0.7s step-end infinite; }
 .animate-line-expand { animation: lineExpand 1s ease-in-out 1.2s forwards; }
 
 /* =========================================
-   3. NAVIGATION & HEADER
+   3. NAVIGATION & HEADER (FIXED COLOR)
    ========================================= */
 header {
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
 }
 
-.nav-link {
-    color: #475569 !important; 
+/* Selector ini lebih kuat buat hajar bug warna item di GitHub */
+header .nav-link, 
+nav .nav-link {
+    color: #ffffff !important; /* Paksa putih biar gak jadi item pas siang */
     font-weight: 700;
     transition: all 0.3s ease;
+    opacity: 0.9;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-.nav-link.active {
-    color: #059669 !important; /* Emerald-600 */
-}
-
-/* Header style when on top of Hero (White text) */
-header .nav-link {
-    color: rgba(255, 255, 255, 0.9) !important;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
+header .nav-link.active,
 header .nav-link.border-b-2 {
+    color: #ffffff !important;
     border-color: #10b981 !important;
+    opacity: 1;
+}
+
+header .nav-link:hover {
+    color: #10b981 !important;
+    opacity: 1;
+}
+
+/* Fix Logo Text RTI.DASHBOARD */
+header .text-2xl {
     color: #ffffff !important;
 }
 
@@ -108,7 +114,6 @@ header .nav-link.border-b-2 {
     font-weight: 800; 
 }
 
-/* Social Media Cards */
 .sosmed-card { 
     display: inline-block; 
     perspective: 1000px; 
@@ -131,7 +136,6 @@ header .nav-link.border-b-2 {
     transform: translateY(0) scale(1) !important;
 }
 
-/* Staggered Delay for Grids */
 .grid > div:nth-child(1).reveal { transition-delay: 0.1s; }
 .grid > div:nth-child(2).reveal { transition-delay: 0.2s; }
 .grid > div:nth-child(3).reveal { transition-delay: 0.3s; }
@@ -160,7 +164,6 @@ body.dark-mode header {
     border-color: #334155 !important; 
 }
 
-/* Dark Mode Gradient Correction */
 .dark-mode #hero-fade, 
 .dark-mode .bg-gradient-to-t,
 .dark-mode .from-white {
@@ -172,7 +175,6 @@ body.dark-mode header {
 
 .dark-mode .w-14.bg-emerald-100 { background: #064e3b !important; color: #10b981 !important; }
 .dark-mode .w-14.bg-indigo-100 { background: #1e1b4b !important; color: #818cf8 !important; }
-.dark-mode .nav-link { color: rgba(255, 255, 255, 0.9) !important; }
 
 /* =========================================
    8. KEYFRAMES & ANIMATIONS
@@ -183,6 +185,18 @@ body.dark-mode header {
 @keyframes blinkCursor { 50% { opacity: 0; } }
 
 @keyframes bounce { 
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+    40% {transform: translateY(-10px);} 
+    60% {transform: translateY(-5px);} 
+}
+
+@keyframes floatLogo { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-8px); } 
+}
+
+.animate-bounce { animation: bounce 2s infinite; }
+.reveal.active img { animation: floatLogo 4s ease-in-out infinite; }
     0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
     40% {transform: translateY(-10px);} 
     60% {transform: translateY(-5px);} 
