@@ -1,0 +1,198 @@
+/* RTI DASHBOARD - OFFICIAL STYLESHEET
+    Standard: Modular, Clean, and Scalable
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+
+/* =========================================
+   1. CORE & BASE STYLES
+   ========================================= */
+body { 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.bg-fixed { 
+    background-attachment: fixed !important; 
+}
+
+/* =========================================
+   2. LOADER / OPENING ANIMATION
+   ========================================= */
+#loader-wrapper { 
+    transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1); 
+}
+
+#loader-wrapper h1 { 
+    display: inline-block; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    animation: typing 1.5s steps(13, end) forwards; 
+}
+
+.loader-finish { 
+    opacity: 0 !important; 
+    pointer-events: none !important; 
+    transform: translateY(-20px); 
+    transition: all 1s ease; 
+}
+
+/* Cursor & Line Animation */
+.animate-cursor { animation: blink 0.7s step-end infinite; }
+.animate-line-expand { animation: lineExpand 1s ease-in-out 1.2s forwards; }
+
+/* =========================================
+   3. NAVIGATION & HEADER
+   ========================================= */
+header {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+.nav-link {
+    color: #475569 !important; 
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.nav-link.active {
+    color: #059669 !important; /* Emerald-600 */
+}
+
+/* Header style when on top of Hero (White text) */
+header .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+header .nav-link.border-b-2 {
+    border-color: #10b981 !important;
+    color: #ffffff !important;
+}
+
+/* =========================================
+   4. HERO & TYPEWRITER
+   ========================================= */
+#hero-fade {
+    background: linear-gradient(to top, white 20%, transparent) !important;
+}
+
+#typewriter.typing-text::after { 
+    content: '|'; 
+    animation: blinkCursor 0.8s infinite; 
+    color: white; 
+}
+
+/* =========================================
+   5. CARDS & COMPONENTS
+   ========================================= */
+.green-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid #ecfdf5;
+    box-shadow: 0 10px 25px -10px rgba(16, 185, 129, 0.2);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease !important;
+}
+
+.green-card:hover { 
+    transform: translateY(-12px) scale(1.02) !important; 
+}
+
+.tag-green { 
+    background: #10b981; 
+    color: white; 
+    padding: 3px 10px; 
+    border-radius: 6px; 
+    font-size: 9px; 
+    font-weight: 800; 
+}
+
+/* Social Media Cards */
+.sosmed-card { 
+    display: inline-block; 
+    perspective: 1000px; 
+}
+
+/* =========================================
+   6. SCROLL REVEAL ENGINE
+   ========================================= */
+.reveal {
+    opacity: 0 !important;
+    transform: translateY(80px) scale(0.96) !important;
+    transition: 
+        opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), 
+        transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: transform, opacity;
+}
+
+.reveal.active {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Staggered Delay for Grids */
+.grid > div:nth-child(1).reveal { transition-delay: 0.1s; }
+.grid > div:nth-child(2).reveal { transition-delay: 0.2s; }
+.grid > div:nth-child(3).reveal { transition-delay: 0.3s; }
+.grid > div:nth-child(4).reveal { transition-delay: 0.4s; }
+
+/* =========================================
+   7. DARK MODE SYSTEM (FIXED)
+   ========================================= */
+body.dark-mode { 
+    background-color: #050b14 !important; 
+    color: #f1f5f9 !important; 
+}
+
+body.dark-mode header { 
+    background-color: rgba(15, 23, 42, 0.7) !important; 
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode footer { 
+    background-color: #0f172a !important; 
+    border-color: #1e293b !important; 
+}
+
+.dark-mode .green-card { 
+    background: #1e293b !important; 
+    border-color: #334155 !important; 
+}
+
+/* Dark Mode Gradient Correction */
+.dark-mode #hero-fade, 
+.dark-mode .bg-gradient-to-t,
+.dark-mode .from-white {
+    background-image: linear-gradient(to top, #050b14 30%, transparent) !important;
+    --tw-gradient-from: #050b14 !important;
+    --tw-gradient-to: rgb(5 11 20 / 0) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.dark-mode .w-14.bg-emerald-100 { background: #064e3b !important; color: #10b981 !important; }
+.dark-mode .w-14.bg-indigo-100 { background: #1e1b4b !important; color: #818cf8 !important; }
+.dark-mode .nav-link { color: rgba(255, 255, 255, 0.9) !important; }
+
+/* =========================================
+   8. KEYFRAMES & ANIMATIONS
+   ========================================= */
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink { from, to { border-color: transparent } 50% { border-color: #10b981 } }
+@keyframes lineExpand { to { width: 200px; } }
+@keyframes blinkCursor { 50% { opacity: 0; } }
+
+@keyframes bounce { 
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+    40% {transform: translateY(-10px);} 
+    60% {transform: translateY(-5px);} 
+}
+
+@keyframes floatLogo { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-8px); } 
+}
+
+/* Implementation */
+.animate-bounce { animation: bounce 2s infinite; }
+.reveal.active img { animation: floatLogo 4s ease-in-out infinite; }
