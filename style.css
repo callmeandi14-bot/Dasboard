@@ -1,6 +1,5 @@
-/* RTI DASHBOARD - OFFICIAL STYLESHEET
-    Standard: Modular, Clean, and Scalable
-    STATUS: FIX NAVIGATION COLOR BUG
+/* RTI DASHBOARD - OFFICIAL STYLESHEET 
+   Status: Clean Logo & Force White Navigation 
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap');
@@ -31,6 +30,12 @@ body {
     animation: typing 1.5s steps(13, end) forwards; 
 }
 
+/* Hilangkan shadow di logo loader */
+#loader-wrapper img {
+    box-shadow: none !important;
+    filter: none !important;
+}
+
 .loader-finish { 
     opacity: 0 !important; 
     pointer-events: none !important; 
@@ -42,17 +47,18 @@ body {
 .animate-line-expand { animation: lineExpand 1s ease-in-out 1.2s forwards; }
 
 /* =========================================
-   3. NAVIGATION & HEADER (FIXED COLOR)
+   3. NAVIGATION & HEADER (FORCE WHITE)
    ========================================= */
 header {
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
 }
 
-/* Selector ini lebih kuat buat hajar bug warna item di GitHub */
+/* Paksa navigasi tetap putih di mode siang/malam di GitHub */
 header .nav-link, 
-nav .nav-link {
-    color: #ffffff !important; /* Paksa putih biar gak jadi item pas siang */
+nav .nav-link,
+header .text-white {
+    color: #ffffff !important; 
     font-weight: 700;
     transition: all 0.3s ease;
     opacity: 0.9;
@@ -63,24 +69,23 @@ header .nav-link.active,
 header .nav-link.border-b-2 {
     color: #ffffff !important;
     border-color: #10b981 !important;
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 header .nav-link:hover {
     color: #10b981 !important;
-    opacity: 1;
-}
-
-/* Fix Logo Text RTI.DASHBOARD */
-header .text-2xl {
-    color: #ffffff !important;
+    opacity: 1 !important;
 }
 
 /* =========================================
-   4. HERO & TYPEWRITER
+   4. HERO LOGO (NO BACKGROUND/BOX)
    ========================================= */
-#hero-fade {
-    background: linear-gradient(to top, white 20%, transparent) !important;
+.reveal img {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    border-radius: 0 !important; /* Hapus radius kotak */
 }
 
 #typewriter.typing-text::after { 
@@ -90,123 +95,77 @@ header .text-2xl {
 }
 
 /* =========================================
-   5. CARDS & COMPONENTS
+   5. CARDS & SOSMED
    ========================================= */
 .green-card {
     background: white;
     border-radius: 20px;
-    overflow: hidden;
     border: 2px solid #ecfdf5;
     box-shadow: 0 10px 25px -10px rgba(16, 185, 129, 0.2);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease !important;
 }
 
-.green-card:hover { 
-    transform: translateY(-12px) scale(1.02) !important; 
-}
+.green-card:hover { transform: translateY(-12px) scale(1.02) !important; }
 
-.tag-green { 
-    background: #10b981; 
-    color: white; 
-    padding: 3px 10px; 
-    border-radius: 6px; 
-    font-size: 9px; 
-    font-weight: 800; 
-}
-
-.sosmed-card { 
-    display: inline-block; 
-    perspective: 1000px; 
-}
+.sosmed-card { display: inline-block; perspective: 1000px; }
 
 /* =========================================
-   6. SCROLL REVEAL ENGINE
+   6. SCROLL REVEAL & DARK MODE
    ========================================= */
 .reveal {
     opacity: 0 !important;
     transform: translateY(80px) scale(0.96) !important;
-    transition: 
-        opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), 
-        transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    will-change: transform, opacity;
+    transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.reveal.active {
-    opacity: 1 !important;
-    transform: translateY(0) scale(1) !important;
-}
+.reveal.active { opacity: 1 !important; transform: translateY(0) scale(1) !important; }
 
-.grid > div:nth-child(1).reveal { transition-delay: 0.1s; }
-.grid > div:nth-child(2).reveal { transition-delay: 0.2s; }
-.grid > div:nth-child(3).reveal { transition-delay: 0.3s; }
-.grid > div:nth-child(4).reveal { transition-delay: 0.4s; }
+body.dark-mode { background-color: #050b14 !important; color: #f1f5f9 !important; }
+.dark-mode .green-card { background: #1e293b !important; border-color: #334155 !important; }
 
 /* =========================================
-   7. DARK MODE SYSTEM (FIXED)
-   ========================================= */
-body.dark-mode { 
-    background-color: #050b14 !important; 
-    color: #f1f5f9 !important; 
-}
-
-body.dark-mode header { 
-    background-color: rgba(15, 23, 42, 0.7) !important; 
-    border-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-.dark-mode footer { 
-    background-color: #0f172a !important; 
-    border-color: #1e293b !important; 
-}
-
-.dark-mode .green-card { 
-    background: #1e293b !important; 
-    border-color: #334155 !important; 
-}
-
-.dark-mode #hero-fade, 
-.dark-mode .bg-gradient-to-t,
-.dark-mode .from-white {
-    background-image: linear-gradient(to top, #050b14 30%, transparent) !important;
-    --tw-gradient-from: #050b14 !important;
-    --tw-gradient-to: rgb(5 11 20 / 0) !important;
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-.dark-mode .w-14.bg-emerald-100 { background: #064e3b !important; color: #10b981 !important; }
-.dark-mode .w-14.bg-indigo-100 { background: #1e1b4b !important; color: #818cf8 !important; }
-
-/* =========================================
-   8. KEYFRAMES & ANIMATIONS
+   7. KEYFRAMES
    ========================================= */
 @keyframes typing { from { width: 0 } to { width: 100% } }
 @keyframes blink { from, to { border-color: transparent } 50% { border-color: #10b981 } }
 @keyframes lineExpand { to { width: 200px; } }
 @keyframes blinkCursor { 50% { opacity: 0; } }
-
-@keyframes bounce { 
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
-    40% {transform: translateY(-10px);} 
-    60% {transform: translateY(-5px);} 
-}
-
-@keyframes floatLogo { 
-    0%, 100% { transform: translateY(0); } 
-    50% { transform: translateY(-8px); } 
-}
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
 
 .animate-bounce { animation: bounce 2s infinite; }
-.reveal.active img { animation: floatLogo 4s ease-in-out infinite; }
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
-    40% {transform: translateY(-10px);} 
-    60% {transform: translateY(-5px);} 
+/* =========================================
+   TYPEWRITER AURA +++ (KING STYLE)
+   ========================================= */
+#typewriter {
+    font-weight: 900 !important;
+    letter-spacing: -0.05em;
+    /* Gradasi Hijau-Putih khas RTI */
+    background: linear-gradient(to bottom, #ffffff 30%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Efek Glow/Aura */
+    filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.4));
+    
+    /* Animasi napas halus */
+    animation: auraBreath 3s ease-in-out infinite;
 }
 
-@keyframes floatLogo { 
-    0%, 100% { transform: translateY(0); } 
-    50% { transform: translateY(-8px); } 
+/* Animasi biar auranya kayak napas (besar-kecil dikit) */
+@keyframes auraBreath {
+    0%, 100% { 
+        filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.4));
+        transform: scale(1);
+    }
+    50% { 
+        filter: drop-shadow(0 0 25px rgba(16, 185, 129, 0.7));
+        transform: scale(1.02);
+    }
 }
 
-/* Implementation */
-.animate-bounce { animation: bounce 2s infinite; }
-.reveal.active img { animation: floatLogo 4s ease-in-out infinite; }
+/* Pastikan kursor ketiknya tetep putih */
+#typewriter.typing-text::after {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    margin-left: 5px;
+}
